@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class HeroesService {
 
-
   private heroes: Heroe[] =
   [
     {
@@ -67,10 +66,31 @@ export class HeroesService {
     return this.heroes;
   }
 
-  getHeroe(idx: number): Heroe {
+  /*getHeroe(idx: number): Heroe {
     return this.heroes[idx];
+  }*/
+
+  getHeroe(nombre: string): Heroe {
+    for (const heroe of this.heroes) {
+      if (heroe.nombre === nombre) {
+        return heroe;
+      }
+    }
+    
   }
 
+  buscarHeroes(termino: string): Heroe[] {
+    const heroes_aux: any[] = [];
+
+    for (let i = 0; i < this.heroes.length; i = i + 1) {
+
+      if (this.heroes[i].nombre.toLocaleLowerCase().indexOf(termino) >= 0) {
+        heroes_aux.push(this.heroes[i]);
+      }
+    }
+    // Singleton!!
+    return heroes_aux;
+  }
 
 }
 
