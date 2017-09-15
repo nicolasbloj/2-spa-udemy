@@ -1,0 +1,31 @@
+<h1 class="animated fadeIn">{{ heroe.nombre }} <small>{{ heroe.aparicion }}</small></h1>
+<hr>
+
+<div class="row animated fadeIn fast">
+  <div class="col-md-4">
+    <img class="img-fluid" [src]="heroe.img" [alt]="heroe.nombre">
+    <br><br>
+
+    <a class="btn btn-outline-danger btn-block" [routerLink]="['/heroes']"> Regresar </a>
+
+  </div>
+
+  <div class="col-md-8">
+    <h3>{{ heroe.nombre }}</h3>
+    <hr>
+    <p>
+      {{ heroe.bio }}
+    </p>
+
+    <div class="text-center">
+      <div *ngIf="heroe.casa.toLocaleLowerCase()=='dc';then if_content else else_content"></div>
+      <ng-template #if_content>
+        <img class="img-logo" src="assets/img/dc.jpg" alt="dc">
+      </ng-template>
+      <ng-template #else_content>
+        <img class="img-logo" src="assets/img/marvel.gif" alt="marvel">
+      </ng-template>
+    </div>
+
+  </div>
+</div>
